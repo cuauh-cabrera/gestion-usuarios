@@ -9,8 +9,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResponseUsuario {
+public class ResponseDelete {
+    private Long id;
     private String mensaje;
-    private String codigo;
-    private List<UsuarioDTO> usuarioDTOList;
 }
