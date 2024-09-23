@@ -1,7 +1,7 @@
 package com.adea.gestionusuarios.service;
 
 import com.adea.gestionusuarios.entity.Usuario;
-import com.adea.gestionusuarios.model.ResponseDelete;
+import com.adea.gestionusuarios.model.ResponseSave;
 import com.adea.gestionusuarios.model.UsuarioDTO;
 
 import java.util.List;
@@ -11,11 +11,11 @@ public interface IUsuarioService {
 
     public UsuarioDTO readById(Long id);
 
-    public Usuario insert(Usuario usuario);
+    public ResponseSave insert(Usuario usuario);
 
-    public Usuario update(Usuario usuario);
+    public ResponseSave update(Usuario usuario);
 
-    public ResponseDelete delete(Long id);
+    public ResponseSave delete(Long id);
 
     public List<UsuarioDTO>  findByNombre(String nombre);
 }

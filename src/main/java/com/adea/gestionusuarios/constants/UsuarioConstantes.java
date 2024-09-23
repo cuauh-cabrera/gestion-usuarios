@@ -18,8 +18,8 @@ public final class UsuarioConstantes {
     public static final String SERVER_ERROR = "Error: Revisar la conexion a la base de datos y correcta implementacion de la capa Repository";
     public static final String _500 = "Error interno: Intente mas tarde";
     public static final String OK = "Operacion exitosa";
-    public static final String CREATED = "Usuario creado";
-    public static final String UPDATED = "Usuario actualizado";
+    public static final String CREATED = "Usuario creado con exito";
+    public static final String UPDATED = "Usuario actualizado con exito";
     public static final String DELETED = "Usuario borrado";
     public static final Boolean FILTER = false;
 

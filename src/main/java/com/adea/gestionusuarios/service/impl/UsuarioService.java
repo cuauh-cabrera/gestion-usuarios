@@ -5,7 +5,7 @@ import com.adea.gestionusuarios.entity.Usuario;
 import com.adea.gestionusuarios.exceptions.ResponseNoContent;
 import com.adea.gestionusuarios.exceptions.ResponseNotFound;
 import com.adea.gestionusuarios.exceptions.ResponseServerError;
-import com.adea.gestionusuarios.model.ResponseDelete;
+import com.adea.gestionusuarios.model.ResponseSave;
 import com.adea.gestionusuarios.model.UsuarioDTO;
 import com.adea.gestionusuarios.repository.UsuarioRepository;
 import com.adea.gestionusuarios.service.IUsuarioService;
@@ -85,34 +85,39 @@ public class UsuarioService implements IUsuarioService {
 
     // Agregar nuevo usuario
     @Override
-    public Usuario insert(Usuario usuario) {
+    public ResponseSave insert(Usuario usuario) {
         try {
             usuarioRepository.save(usuario);
+            ResponseSave responseInsert = new ResponseSave();
+            responseInsert.setId(usuario.getId());
+            responseInsert.setMensaje(UsuarioConstantes.CREATED);
             log.info(UsuarioConstantes.OK);
-
+            return responseInsert;
         }catch (ResponseServerError e){
             log.error(UsuarioConstantes.SERVER_ERROR);
             throw new ResponseServerError(new ResponseServerError().getError());
         }
-        return usuario;
     }
 
     // Actualizar un usuario existente
     @Override
-    public Usuario update(Usuario usuario) {
+    public ResponseSave update(Usuario usuario) {
         try {
             usuarioRepository.save(usuario);
+            ResponseSave responseUpdate = new ResponseSave();
+            responseUpdate.setId(usuario.getId());
+            responseUpdate.setMensaje(UsuarioConstantes.UPDATED);
             log.info(UsuarioConstantes.OK);
+            return responseUpdate;
         }catch (ResponseServerError e){
             log.error(UsuarioConstantes.SERVER_ERROR);
             throw new ResponseServerError(new ResponseServerError().getError());
         }
-        return usuario;
     }
 
     // Borrado logico por Id
     @Override
-    public ResponseDelete delete(Long id) {
+    public ResponseSave delete(Long id) {
         try {
             Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
             if (usuarioOptional.isPresent() && usuarioOptional.get().getIsActive()== UsuarioConstantes.FILTER){
@@ -129,16 +134,17 @@ public class UsuarioService implements IUsuarioService {
                Usuario usuario = usuarioOptional.get();
                usuario.setIsActive(UsuarioConstantes.FILTER);
                usuarioRepository.save(usuario);
-               ResponseDelete responseDelete = new ResponseDelete();
+               ResponseSave responseDelete = new ResponseSave();
                responseDelete.setId(usuario.getId());
                responseDelete.setMensaje(UsuarioConstantes.DELETED);
+               log.info(UsuarioConstantes.DELETED);
                return responseDelete;
             }
         }catch (ResponseServerError e){
             log.error(UsuarioConstantes.SERVER_ERROR);
             throw new ResponseServerError(new ResponseServerError().getError());
         }
-        return new ResponseDelete();
+        return new ResponseSave();
     }
 
 

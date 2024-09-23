@@ -1,7 +1,7 @@
 package com.adea.gestionusuarios.controller;
 
 import com.adea.gestionusuarios.entity.Usuario;
-import com.adea.gestionusuarios.model.ResponseDelete;
+import com.adea.gestionusuarios.model.ResponseSave;
 import com.adea.gestionusuarios.model.UsuarioDTO;
 import com.adea.gestionusuarios.service.IUsuarioService;
 import jakarta.validation.Valid;
@@ -32,20 +32,20 @@ public class UsuarioController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/usuario")
-    public Usuario insert(@RequestBody @Valid Usuario usuario){
+    public ResponseSave insert(@RequestBody @Valid Usuario usuario){
         return usuarioService.insert(usuario);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PutMapping("/usuario/{id}")
-    public Usuario update(@RequestBody @Valid Usuario usuario, @PathVariable Long id){
+    public ResponseSave update(@RequestBody @Valid Usuario usuario, @PathVariable Long id){
         usuario.setId(id);
         return usuarioService.update(usuario);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/usuario/{id}")
-    public ResponseDelete delete(@PathVariable Long id){
+    public ResponseSave delete(@PathVariable Long id){
         return usuarioService.delete(id);
     }
 }
