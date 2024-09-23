@@ -51,8 +51,14 @@ public class UsuarioController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/usuario/query")
+    @GetMapping("/usuario/status")
     public List<UsuarioDTO> findByStatus(@RequestParam @NotNull Character status){
         return usuarioService.findByStatus(status);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/usuario/nombre")
+    public List<UsuarioDTO> findByName(@RequestParam @NotNull String nombre){
+        return usuarioService.findByNombre(nombre);
     }
 }

@@ -172,5 +172,30 @@ public class UsuarioService implements IUsuarioService {
             throw new ResponseServerError(new ResponseServerError().getError());
         }
     }
+
+    // Buscar usuarios por nombre
+    @Override
+    public List<UsuarioDTO> findByNombre(String nombre) {
+        try {
+            List<Usuario> usuarioList = usuarioRepository.findByNombreAndIsActiveTrue(nombre).stream().toList();
+            if (usuarioList.isEmpty()){
+                log.error(UsuarioConstantes.NOT_FOUND);
+                throw new ResponseNotFound(new ResponseNotFound().getMensaje());
+            }
+            return usuarioList.stream().map(usuario -> {
+                UsuarioDTO usuarioDTO = new UsuarioDTO();
+                usuarioDTO.setId(usuario.getId());
+                usuarioDTO.setLogin(usuario.getLogin());
+                usuarioDTO.setNombre(usuario.getNombre());
+                usuarioDTO.setApellidoPaterno(usuario.getApellidoPaterno());
+                usuarioDTO.setFechaAlta(usuario.getFechaAlta());
+                usuarioDTO.setStatus(usuario.getStatus());
+                return usuarioDTO;
+            }).toList();
+        }catch (ResponseServerError e){
+            log.error(UsuarioConstantes.SERVER_ERROR);
+            throw new ResponseServerError(new ResponseServerError().getError());
+        }
+    }
 }
 
