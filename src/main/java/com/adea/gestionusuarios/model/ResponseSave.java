@@ -4,13 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResponseUsuario {
+public class ResponseSave {
+    private Long id;
     private String mensaje;
-    private String codigo;
-    private List<UsuarioDTO> usuarioDTOList;
 }
