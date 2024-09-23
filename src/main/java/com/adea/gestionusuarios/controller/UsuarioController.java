@@ -5,6 +5,7 @@ import com.adea.gestionusuarios.model.ResponseSave;
 import com.adea.gestionusuarios.model.UsuarioDTO;
 import com.adea.gestionusuarios.service.IUsuarioService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +39,7 @@ public class UsuarioController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PutMapping("/usuario/{id}")
-    public ResponseSave update(@RequestBody @Valid Usuario usuario, @PathVariable Long id){
+    public ResponseSave update(@NotNull @RequestBody @Valid Usuario usuario, @PathVariable Long id){
         usuario.setId(id);
         return usuarioService.update(usuario);
     }
@@ -47,5 +48,11 @@ public class UsuarioController {
     @DeleteMapping("/usuario/{id}")
     public ResponseSave delete(@PathVariable Long id){
         return usuarioService.delete(id);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/usuario/query")
+    public List<UsuarioDTO> findByStatus(@RequestParam @NotNull Character status){
+        return usuarioService.findByStatus(status);
     }
 }

@@ -11,7 +11,7 @@ public final class UsuarioConstantes {
     public static final String DECIMAL_PATTERN = "^[+-]?\\d*\\.\\d+$";
     public static final String INT_PATTERN = "^[+-]?\\d+$";
     public static final String _200 = "Consulta exitosa";
-    public static final String NO_CONTENT = "La consulta no arrojo ningun elemento";
+    public static final String NO_CONTENT = "La consulta no arrojo ningun resultado";
     public static final String  _204 = "Sin contenido";
     public static final String NOT_FOUND = "El elemento no existe";
     public static final String _404 = "El servidor no pudo encontrar el elemento solicitado";

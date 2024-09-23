@@ -17,5 +17,5 @@ public interface IUsuarioService {
 
     public ResponseSave delete(Long id);
 
-    public List<UsuarioDTO>  findByNombre(String nombre);
+    public List<UsuarioDTO> findByStatus(Character status);
 }

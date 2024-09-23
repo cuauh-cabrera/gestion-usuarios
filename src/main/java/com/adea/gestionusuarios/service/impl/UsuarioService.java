@@ -147,11 +147,30 @@ public class UsuarioService implements IUsuarioService {
         return new ResponseSave();
     }
 
-
+    // Buscar usuarios por status
     @Override
-    public List<UsuarioDTO> findByNombre(String nombre) {
-        return null;
+    public List<UsuarioDTO> findByStatus(Character status) {
+        try {
+            List<Usuario> usuarioList = usuarioRepository.findByStatusAndIsActiveTrue(status).stream().toList();
+            if (usuarioList.isEmpty()){
+                log.error(UsuarioConstantes._204);
+                throw new ResponseNoContent(new ResponseNoContent().getMensaje());
+            }
+                return usuarioList.stream().map(usuario -> {
+                UsuarioDTO usuarioDTO = new UsuarioDTO();
+                usuarioDTO.setId(usuario.getId());
+                usuarioDTO.setLogin(usuario.getLogin());
+                usuarioDTO.setNombre(usuario.getNombre());
+                usuarioDTO.setApellidoPaterno(usuario.getApellidoPaterno());
+                usuarioDTO.setFechaAlta(usuario.getFechaAlta());
+                usuarioDTO.setStatus(usuario.getStatus());
+                log.info(UsuarioConstantes._200);
+                return usuarioDTO;
+                }).toList();
+        }catch (ResponseServerError e){
+            log.error(UsuarioConstantes.SERVER_ERROR);
+            throw new ResponseServerError(new ResponseServerError().getError());
+        }
     }
-
 }
 

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Getter
 @Setter
-@ResponseStatus(HttpStatus.NO_CONTENT)
+@ResponseStatus(HttpStatus.NOT_FOUND)
 public class ResponseNoContent extends RuntimeException {
     private String mensaje = UsuarioConstantes.NO_CONTENT;
     private String Error = UsuarioConstantes._204;
