@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 
 @Entity
@@ -47,10 +48,10 @@ public class Usuario {
 
     @Column(name = "fecha_alta")
     @NotNull(message = UsuarioConstantes.NOT_BLANK)
-    private Date fechaAlta;
+    private LocalDate fechaAlta;
 
     @Column(name = "fecha_baja")
-    private Date fechaBaja;
+    private LocalDate fechaBaja;
 
     @Column(name = "status")
     @NotNull(message = UsuarioConstantes.NOT_BLANK)
@@ -61,10 +62,10 @@ public class Usuario {
     private Float intentos;
 
     @Column(name = "fecha_revocado")
-    private Date fechaRevocado;
+    private LocalDate fechaRevocado;
 
     @Column(name = "fecha_vigencia")
-    private Date fechaVigencia;
+    private LocalDate fechaVigencia;
 
     @Column(name = "no_acceso")
     private Integer noAcceso;
@@ -79,8 +80,8 @@ public class Usuario {
     private Double area;
 
     @Column(name = "fecha_modificacion")
-    @NotNull(message = UsuarioConstantes.NOT_BLANK)
-    private Date fechaModificacion;
+//    @NotNull(message = UsuarioConstantes.NOT_BLANK)
+    private LocalDate fechaModificacion;
 
     @Column(name = "is_active")
     private Boolean isActive;

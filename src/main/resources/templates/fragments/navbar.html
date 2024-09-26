@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<div th:fragment="navbar-section" th:remove="tag" class="container-fluid border p-3 ">
+    <nav class="navbar navbar-expand-lg p-3 fixed-top  bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand fs-2" aria-current="page" href="/">Gestion de Usuarios</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active p-3 fs-5" href="#"></a>
+                    <a class="nav-link active p-3 fs-5" href="/agregar">Agregar Usuario</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+</html>

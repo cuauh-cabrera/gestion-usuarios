@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -14,7 +15,7 @@ public class UsuarioDTO {
     private String login;
     private String nombre;
     private String apellidoPaterno;
-    private Date fechaAlta;
+    private LocalDate fechaAlta;
     private Character status;
 }
 

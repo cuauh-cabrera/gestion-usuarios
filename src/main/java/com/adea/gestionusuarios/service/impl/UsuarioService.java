@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,9 +22,9 @@ import java.util.Optional;
 @Slf4j
 public class UsuarioService implements IUsuarioService {
     @Autowired
-    UsuarioRepository usuarioRepository;
+    private UsuarioRepository usuarioRepository;
 
-
+//REST Services
     // Consultar todos los usuarios
     @Override
     public List<UsuarioDTO>  readAll() {
@@ -197,5 +199,72 @@ public class UsuarioService implements IUsuarioService {
             throw new ResponseServerError(new ResponseServerError().getError());
         }
     }
+
+    //////////////////  MVC Services /////////////////////////////////
+    @Override
+    public Usuario usuarioById(Long id) {
+        try {
+            Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
+            if (usuarioOptional.isPresent() && usuarioOptional.get().getIsActive()==UsuarioConstantes.FILTER){
+                throw  new ResponseNotFound(new ResponseNotFound().getMensaje());
+            }
+
+            if (usuarioOptional.isEmpty()){
+                throw new ResponseNotFound(new ResponseNotFound().getMensaje());
+            }
+
+            if (usuarioOptional.isPresent() && usuarioOptional.get().getIsActive()!=UsuarioConstantes.FILTER) {
+                Usuario usuario = usuarioOptional.get();
+                return usuario;
+            }
+            return new Usuario();
+        }catch (ResponseServerError E){
+            throw new ResponseServerError(new ResponseServerError().getError());
+        }
+    }
+
+    @Override
+    public Usuario usuarioUpdate(Usuario usuario) {
+        LocalDate currentDate = LocalDate.now();
+        usuario.setFechaModificacion(currentDate);
+        if (usuario.getStatus() != 'R' && usuario.getFechaVigencia().isAfter(currentDate)) {
+            usuario.setStatus('A');
+        } else {
+            usuario.setStatus('B');
+        }
+        return usuarioRepository.save(usuario);
+    }
+
+    @Override
+    public Usuario usuarioInsert(Usuario usuario) {
+        LocalDate currentDate = LocalDate.now();
+        usuario.setFechaAlta(currentDate);
+        usuario.setFechaModificacion(currentDate);
+        if (usuario.getFechaVigencia().isBefore(currentDate)) {
+            usuario.setStatus('A');
+        } else {
+            usuario.setStatus('B');
+        }
+        usuario.setStatus('A');
+        usuario.setIntentos(0.0f);
+        return usuarioRepository.save(usuario);
+    }
+
+    @Override
+    public List<Usuario> usuarioByStatus(Character status) {
+         return usuarioRepository.findByStatusAndIsActiveTrue(status);
+
+    }
+
+    @Override
+    public List<Usuario> usuarioByNombre(String nombre) {
+        return usuarioRepository.findByNombreAndIsActiveTrue(nombre);
+    }
+
+    @Override
+    public List<Usuario> usuarioByFechaAlta(Date fecha) {
+        return usuarioRepository.findByFechaAltaAndIsActiveTrue(fecha);
+    }
+
 }
 
