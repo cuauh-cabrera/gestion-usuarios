@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" >
+<head th:replace="~{fragments/head::head-section(title='Agregar')}"></head>
+<body class="container-fluid bg-primary-subtle">
+<!--Barra de navegacion-->
+<div th:replace="~{fragments/navbar::navbar-section}"></div>
+
+<!--Formulario-->
+<div class="container-fluid border border-danger mt-5 p-5">
+    <div class="container  mt-5">
+        <h1 class="mt-5 text-center">Agregar Usuario</h1>
+        <div class="container mt-5 w-75 border">
+            <form action="/agregar" method="post" modelAttribute="usuarioForm" >
+                <div class="mb-3">
+                    <label for="login" class="form-label" >Login: (Obligatorio)</label>
+                    <input type="text" class="form-control" id="login" name="login" placeholder="Ej. jdoe" required="true">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password: (Obligatorio)</label>
+                    <input type="text" class="form-control" id="password" name="password" placeholder="Ingrese la contrasena asociada al login del usuario" required>
+                </div>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre: (Obligatorio)</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej. John" required>
+                </div>
+                <div class="mb-3">
+                    <label for="cliente" class="form-label">Cliente: (Obligatorio)</label>
+                    <input type="number" class="form-control" id="cliente" name="cliente" placeholder="Ej.  10.0" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email: (Obligatorio)</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Ej. usuario@correo.com" required>
+                </div>
+                <div class="mb-3">
+                    <label for="fecha-alta" class="form-label">Fecha de Alta: (Obligatorio)</label>
+                    <input type="date" class="form-control" id="fecha-alta" name="fechaAlta" placeholder="YYYY-MM-DD" required>
+                </div>
+                <div class="mb-3">
+                    <label for="status" class="form-label">Status: (Obligatorio)</label>
+                    <input type="text" class="form-control" id="status" name="status" placeholder="Ej. A" required>
+                </div>
+                <div class="mb-3">
+                    <label for="intentos" class="form-label">Intentos: (Obligatorio)</label>
+                    <input type="number" class="form-control" id="intentos" name="intentos" placeholder="Ej. 5.0" required>
+                </div>
+                <div class="mb-3">
+                    <label for="fecha-vigencia" class="form-label">Fecha de Vigencia:</label>
+                    <input type="date" class="form-control" id="fecha-vigencia" name="fechaVigencia">
+                </div>
+                <div class="mb-3">
+                    <label for="no-acceso" class="form-label">Numero de Acceso:</label>
+                    <input type="number" class="form-control" id="no-acceso" name="no-acceso" placeholder="Ej. 100">
+                </div>
+                <div class="mb-3">
+                    <label for="apellido-paterno" class="form-label">Apellido Paterno:</label>
+                    <input type="text" class="form-control" id="apellido-paterno" name="apellidoPaterno" placeholder="Ej. Doe">
+                </div>
+                <div class="mb-3">
+                    <label for="apellido-materno" class="form-label">Apellido Materno:</label>
+                    <input type="text" class="form-control" id="apellido-materno" name="apellidoMaterno" placeholder="Ej. Perez">
+                </div>
+                <div class="mb-3">
+                    <input type="hidden" class="form-control" id="fecha-modificacion" name="fechaModificacion" placeholder="YYYY-MM-DD">
+                </div>
+                 <div class="text-center m-3">
+                    <button type="submit" class="btn btn-warning btn-lg  me-3">Agregar</button>
+                    <a href="/" class="btn btn-primary btn-lg">Regresar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--Footer-->
+<div th:replace="~{fragments/footer::footer-section}"></div>
+</body>
+</html>

@@ -20,4 +20,10 @@ public interface IUsuarioService {
     public List<UsuarioDTO> findByStatus(Character status);
 
     public List<UsuarioDTO> findByNombre(String nombre);
+
+    public Usuario usuarioById(Long id);
+
+    public Usuario usuarioUpdate(Usuario usuario);
+
+    public Usuario usuarioInsert(Usuario usuario);
 }

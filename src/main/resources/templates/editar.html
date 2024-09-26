@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" >
+<head th:replace="~{fragments/head::head-section(title='Editar')}"></head>
+<body class="container-fluid bg-primary-subtle">
+<!--Barra de navegacion-->
+<div th:replace="~{fragments/navbar::navbar-section}"></div>
+
+<!--Formulario-->
+<div class="container-fluid border border-danger mt-5 p-5">
+    <div class="container  mt-5">
+        <h1 class="mt-5 text-center">Editar Usuario</h1>
+        <div class="container mt-5 w-75 border">
+            <form action="#" th:action="@{/editar}" th:object="${usuario}" method="post">
+                <input type="hidden" th:field="*{id}">
+                <div class="mb-3">
+                    <label for="login" class="form-label" >Login: (Obligatorio)</label>
+                    <input type="text" class="form-control" id="login" name="login"  required th:field="*{login}">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password: (Obligatorio)</label>
+                    <input type="text" class="form-control" id="password" name="password"  required th:field="*{password}">
+                </div>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre: (Obligatorio)</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required="true" th:field="*{nombre}">
+                </div>
+                <div class="mb-3">
+                    <label for="cliente" class="form-label">Cliente: (Obligatorio)</label>
+                    <input type="number" class="form-control" id="cliente" name="cliente" required="true" th:field="*{cliente}">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email: (Obligatorio)</label>
+                    <input type="email" class="form-control" id="email" name="email" required="true" th:field="*{email}">
+                </div>
+                <div class="mb-3">
+                    <label for="fecha-alta" class="form-label">Fecha de Alta: (Obligatorio)</label>
+                    <input type="text" class="form-control" id="fecha-alta" name="fechaAlta" required th:field="*{fechaAlta}">
+                </div>
+                <div class="mb-3">
+                    <label for="status" class="form-label">Status: (Obligatorio)</label>
+                    <input type="text" class="form-control" id="status" name="status" required="true" th:field="*{status}">
+                </div>
+                <div class="mb-3">
+                    <label for="intentos" class="form-label">Intentos: (Obligatorio)</label>
+                    <input type="number" class="form-control" id="intentos" name="intentos" required="true" th:field="*{intentos}">
+                </div>
+                <div class="mb-3">
+                    <label for="fecha-vigencia" class="form-label">Fecha de Vigencia:</label>
+                    <input type="text" class="form-control" id="fecha-vigencia" name="fechaVigencia" th:field="*{fechaVigencia}">
+                </div>
+                <div class="mb-3">
+                    <label for="no-acceso" class="form-label">Numero de Acceso:</label>
+                    <input type="number" class="form-control" id="no-acceso" name="noAcceso" th:field="*{noAcceso}">
+                </div>
+                <div class="mb-3">
+                    <label for="apellido-paterno" class="form-label">Apellido Paterno:</label>
+                    <input type="text" class="form-control" id="apellido-paterno" name="apellidoPaterno"  th:field="*{apellidoPaterno}">
+                </div>
+                <div class="mb-3">
+                    <label for="apellido-materno" class="form-label">Apellido Materno:</label>
+                    <input type="text" class="form-control" id="apellido-materno" name="apellidoMaterno" th:field="*{apellidoMaterno}">
+                </div>
+                <div class="mb-3">
+                    <label for="area" class="form-label">Area:</label>
+                    <input type="text" class="form-control" id="area" name="area" th:field="*{area}">
+                </div>
+                <div class="mb-3">
+                    <input type="hidden" disabled class="form-control" id="fecha-modificacion" name="fechaModificacion" th:field="*{fechaModificacion}">
+                </div>
+                <div class="text-center m-3">
+                    <button type="submit" class="btn btn-warning btn-lg  me-3">Actualizar</button>
+                    <a href="/" class="btn btn-primary btn-lg">Regresar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--Footer-->
+<div th:replace="~{fragments/footer::footer-section}"></div>
+</body>
+</html>
