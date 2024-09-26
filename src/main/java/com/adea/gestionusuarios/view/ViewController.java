@@ -9,11 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -67,6 +65,32 @@ public class ViewController {
         model.put("usuario", usuario);
         return "redirect:/";
     }
+
+    @GetMapping("/status")
+    public String viewStatus(@RequestParam(value = "status") Character status,ModelMap model){
+        List<Usuario> usuarioList = usuarioService.usuarioByStatus(status);
+        usuarioList.forEach((usuario)->logger.info(usuario.toString()));
+        model.put("usuario", usuarioList);
+        return "redirect:/";
+    }
+
+    @GetMapping("/nombre")
+    public String viewNombre(@RequestParam(value = "nombre") String nombre, ModelMap model){
+        List<Usuario> usuarioList = usuarioService.usuarioByNombre(nombre);
+        usuarioList.forEach((usuario)->logger.info(usuario.toString()));
+        model.put("usuario", usuarioList);
+        return "redirect:/";
+    }
+
+    @GetMapping("/fechaAlta")
+    public String viewFechaAlta(@RequestParam(value = "fechaAlta") Date fecha,ModelMap model){
+        List<Usuario> usuarioList = usuarioService.usuarioByFechaAlta(fecha);
+        usuarioList.forEach((usuario)->logger.info(usuario.toString()));
+        model.put("usuario",usuarioList);
+        return "redirect:/";
+    }
+
+
 
 
 

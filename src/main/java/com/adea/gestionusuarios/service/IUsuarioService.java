@@ -4,6 +4,7 @@ import com.adea.gestionusuarios.entity.Usuario;
 import com.adea.gestionusuarios.model.ResponseSave;
 import com.adea.gestionusuarios.model.UsuarioDTO;
 
+import java.util.Date;
 import java.util.List;
 
 public interface IUsuarioService {
@@ -26,4 +27,10 @@ public interface IUsuarioService {
     public Usuario usuarioUpdate(Usuario usuario);
 
     public Usuario usuarioInsert(Usuario usuario);
+
+    public List<Usuario> usuarioByStatus(Character status);
+
+    public List<Usuario> usuarioByNombre(String nombre);
+
+    public List<Usuario> usuarioByFechaAlta(Date fecha );
 }

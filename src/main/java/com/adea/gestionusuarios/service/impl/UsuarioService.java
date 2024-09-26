@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -199,7 +200,7 @@ public class UsuarioService implements IUsuarioService {
         }
     }
 
-    // MVC Services
+    //////////////////  MVC Services /////////////////////////////////
     @Override
     public Usuario usuarioById(Long id) {
         try {
@@ -247,6 +248,22 @@ public class UsuarioService implements IUsuarioService {
         usuario.setStatus('A');
         usuario.setIntentos(0.0f);
         return usuarioRepository.save(usuario);
+    }
+
+    @Override
+    public List<Usuario> usuarioByStatus(Character status) {
+         return usuarioRepository.findByStatusAndIsActiveTrue(status);
+
+    }
+
+    @Override
+    public List<Usuario> usuarioByNombre(String nombre) {
+        return usuarioRepository.findByNombreAndIsActiveTrue(nombre);
+    }
+
+    @Override
+    public List<Usuario> usuarioByFechaAlta(Date fecha) {
+        return usuarioRepository.findByFechaAltaAndIsActiveTrue(fecha);
     }
 
 }

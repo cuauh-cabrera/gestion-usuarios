@@ -14,29 +14,29 @@
     </div>
     <!--Filtros-->
     <div class="container-lg mt-3 p-5 ">
-        <div class="container m-0 p-0 w-100 h-auto d-flex justify-content-evenly">
-            <button type="submit" class="btn btn-success btn-lg p-5">ACTIVOS</button>
-            <button type="submit" class="btn btn-secondary btn-lg p-5">INACTIVOS</button>
-            <button type="submit" class="btn btn-warning btn-lg p-5">REVOCADOS</button>
-        </div>
+        <form th:action="@{/}"  method="get" th:object="${usuario}" class="container m-0 p-0 w-100 h-auto d-flex justify-content-evenly">
+            <button type="submit" th:name="status" name="status" value="A" class="btn btn-success btn-lg p-5">ACTIVOS</button>
+            <button type="submit" name="status" value="B" class="btn btn-secondary btn-lg p-5">INACTIVOS</button>
+            <button type="submit" name="status" value="C" class="btn btn-warning btn-lg p-5">REVOCADOS</button>
+        </form>
     </div>
     <!--Barra de busqueda-->
     <div class="container-lg mt-3 p-3">
         <div class="row g-3">
-            <div class="col">
+            <form th:action="@{/}" method="get" class="col">
                 <div class="input-group flex-nowrap">
                     <span class="input-group-text" id="addon-wrapping">Usuario:</span>
-                    <input type="text" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="addon-wrapping">
+                    <input type="text" name="nombre" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="addon-wrapping">
                     <button type="submit" class="btn btn-primary">Buscar</button>
                 </div>
-            </div>
-            <div class="col">
-                <div class="input-group flex-nowrap">
+            </form>
+            <form th:action="@{/}" method="get" class="col">
+                <div  class="input-group flex-nowrap">
                     <span class="input-group-text" id="addon-wrapping">Fecha de alta:</span>
-                    <input type="text" class="form-control" placeholder="YYYY-MM-DD" aria-label="Username" aria-describedby="addon-wrapping">
+                    <input type="text" name="fechaAlta" class="form-control" placeholder="YYYY-MM-DD" aria-label="Username" aria-describedby="addon-wrapping">
                     <button type="submit" class="btn btn-primary">Buscar</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 
